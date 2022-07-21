@@ -199,3 +199,28 @@ func getBranchShortName(output []byte) string {
 	branch := firstLine(output)
 	return strings.TrimPrefix(branch, "refs/heads/")
 }
+
+func isMainBranch() bool {
+	currentBranch, err := currentBranch()
+	if err != nil {
+		log.Fatal()
+	}
+	return currentBranch == "main"
+
+	/*
+	   I'm leaving this comment since it might a more modern (not necessarily better) way
+	   to approach this problem, or at least a more readable option considering
+	   all the dependencies currentBranch() has.
+	*/
+	// gitCmd, err := GitCommand("branch", "--show-current")
+	// if err != nil {
+	// 	log.Fatal()
+	// }
+	// branch, err := gitCmd.Output()
+	// if err != nil {
+	// 	log.Fatal()
+	// }
+	// expectedBranch := []byte("main")
+
+	// return bytes.Contains(branch, expectedBranch)
+}

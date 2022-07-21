@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+	if isMainBranch() {
+		log.Fatal("git branch is main, checkout to a feature branch instead")
+	}
+
 	// modify README.md file
 	bytesWritten, err := toggleCommentInFile()
 	if err != nil {
@@ -22,7 +26,6 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	numberOfCommits := numberOfCommits(commits)
 
 	dummySha := dummyCommitSha(commits)
 	if dummySha == "" {
@@ -36,6 +39,8 @@ func main() {
 	if dummySha != "" {
 		log.Printf("dummy commit found %s", dummySha)
 	}
+	numberOfCommits := numberOfCommits(commits)
+
 	GitAdd(readmeFile)
 	GitFixup(dummySha)
 	GitRebase(numberOfCommits)
