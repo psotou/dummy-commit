@@ -7,4 +7,5 @@ Because sometimes you just want to start start your checks/pipelines with a fres
 - [ ] Improve README description and usage.
 - [ ] Add tests.
 - [ ] Add github actions.
-<!-- dummy commit: off -->
+<!-- dummy commit: on -->
+
